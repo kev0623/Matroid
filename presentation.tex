@@ -1,11 +1,12 @@
 \documentclass{beamer}
-\usetheme{AnnArbor}
+%\usetheme{AnnArbor}
+\usetheme{Madrid}
 % \usecolortheme{default}
 \usecolortheme{beaver} % Change color theme to red
 % Title Page
-\title[Short Title]{Tight Frames and Matroids}
+\title[Tight Frames and Matroids]{Tight Frames and Matroids}
 \author{Kai Chun Lin}
-\institute{Rose-Hulman Institute of Technology}
+\institute{Rose-Hulman}
 \usepackage{amsmath,amssymb,amsthm}
 \newcommand{\RR}{\mathbb{R}}
 
@@ -18,7 +19,7 @@
 \usepackage{multicol}
 \usepackage{biblatex}
 \addbibresource{library.bib}
-
+\newtheorem{conjecture}{Conjecture}
 \renewcommand{\vec}[1]{\mathbf{#1}}
 \newcommand{\ivec}[2][.8]{%
   \scalebox{#1}{%
@@ -38,7 +39,7 @@
   \fi
 }
 \setbeamercolor{title page}{fg=black,bg=red}
-\date{ March 10, 2024}
+\date{ April 6, 2024}
 
 \begin{document}
 
@@ -70,7 +71,7 @@
     % \cite{datta2019low}
     \item A \textbf{matroid} is a pair $(S,I)$ with $S$ being a \textbf{ground set} and $I$ is a collection of subsets of $S$ such that it satisfy this 3 axioms
      \item Axioms
-     
+     s
       \begin{enumerate}
       
         \item The empty set is independent $\emptyset \in \textit{I}$
@@ -89,7 +90,7 @@
   \node[circle, draw] (B) at (3,2) {B};
   \node[circle, draw] (C) at (6,0) {C};
   \node[circle, draw] (D) at (9,0) {D};
-  \node[circle, draw] (E) at (3,-2) {E};
+  \node[circle, draw] (E) at (3,-3) {E};
   \node[circle, draw] (F) at (12,0) {F};
   
   % Draw edges with labels
@@ -373,29 +374,9 @@
             % \draw[red, thick, ->] (O)--(Yhat) node[above] {$\hat{\vec{y}}$};
             % \draw[red, thick, ->] (O)--(Zhat) node[above] {$\hat{\vec{z}}$};
         \end{tikzpicture}}
+
     \end{multicols}
 \end{frame}
-
-\begin{frame}{Some important theorems}
-    \begin{theorem}[K. Lin, 2023]
-%A $(d+1, d)$ ETF can be constructed by first constructing a corresponding Gram matrix $G$ using the formula
-Given the $(d+1, d)$ ETF with Gram matrix
-$G = \frac{d+1}{d}I_{d+1} -\frac{1}{d}J$,
-%Then we need to add together columns of this matrix taken k at a time to form the particular matroid.
-form a collection of $\binom{d+1}{d} = d+1$ vectors by adding together $d$ vectors from the ETF at a time.
-The matroid corresponding to this new collection has only one circuit, namely, the set $\{1, 2, \ldots, d, d+1\}$.
-% We found that if $k=d$ this matroid has only one circuit.
-\end{theorem}
-\begin{proof}
-% Since in the case $k=d$. In the first, we will have $k+1$ vector and to pick $d$ vectors and add them together to get a new vector and add this new vector in the matroid.
-Since $\sum_{i=1}^{d+1}\vec{f}_i = \vec{0}$,
-if we pick $d$ vectors at a time is equivalent to picking $(d+1)-d = 1$ vector at a time. 
-Then, if $d=k$ which means to pick one vector at the time and add the vector to the matrix which did not add anything to the matroid.
-Accordingly, if $k=d$ this matroid has only one circuit which is $\{1, 2, \ldots, d, d+1\}$.
-In other word, every columns is a dependent set but if we remove any columns it will be independent set.
-\end{proof}
-\end{frame}
-
 
 \begin{frame}{Introduction of Tight Frame}
   \begin{itemize}
@@ -431,17 +412,25 @@ In other word, every columns is a dependent set but if we remove any columns it 
     \item 
   \end{itemize}
 \end{frame}
-
-% Conclusion
-\section{Conclusion}
-\begin{frame}{Acknowledgements}
-    This work was supported by the SURE.2020.WV.03 SURE Grant through the WV Research Challenge Fund, WV Higher Education Policy Commission.
+\begin{frame}
+    \frametitle{Conjectures}
+	\begin{conjecture}
+	Here's my conjecture.
+	\end{conjecture}
+    
 \end{frame}
+
 \begin{frame}{Conclusion}
   \begin{itemize}
     \item Summary of key points
     \item Future directions or implications
   \end{itemize}
+\end{frame}
+
+% Conclusion
+\section{Conclusion}
+\begin{frame}{Acknowledgements}
+    This work was supported by the SURE.2020.WV.03 SURE Grant through the WV Research Challenge Fund, WV Higher Education Policy Commission.
 \end{frame}
 
 
