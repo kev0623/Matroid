@@ -405,25 +405,33 @@
 
 %Research Result
 \section{Research result}
-\begin{frame}{Theorem 1}
-  \begin{itemize}
-    \item 
-    \item 
-    \item 
-  \end{itemize}
+\begin{frame}{Some important theorems}
+    \begin{theorem}[K. Lin, 2023]
+%A $(d+1, d)$ ETF can be constructed by first constructing a corresponding Gram matrix $G$ using the formula
+Given the $(d+1, d)$ ETF with Gram matrix
+$G = \frac{d+1}{d}I_{d+1} -\frac{1}{d}J$,
+%Then we need to add together columns of this matrix taken k at a time to form the particular matroid.
+form a collection of $\binom{d+1}{d} = d+1$ vectors by adding together $d$ vectors from the ETF at a time.
+The matroid corresponding to this new collection has only one circuit, namely, the set $\{1, 2, \ldots, d, d+1\}$.
+% We found that if $k=d$ this matroid has only one circuit.
+\end{theorem}
+\begin{proof}
+% Since in the case $k=d$. In the first, we will have $k+1$ vector and to pick $d$ vectors and add them together to get a new vector and add this new vector in the matroid.
+Since $\sum_{i=1}^{d+1}\vec{f}_i = \vec{0}$,
+if we pick $d$ vectors at a time is equivalent to picking $(d+1)-d = 1$ vector at a time. 
+Then, if $d=k$ which means to pick one vector at the time and add the vector to the matrix which did not add anything to the matroid.
+Accordingly, if $k=d$ this matroid has only one circuit which is $\{1, 2, \ldots, d, d+1\}$.
+In other word, every columns is a dependent set but if we remove any columns it will be independent set.
+\end{proof}
 \end{frame}
+
 
 \begin{frame}
     \frametitle{Conjectures}
 	\begin{conjecture}
 	Here's my conjecture.
 	\end{conjecture}
-    
 
-
-\begin{frame}
-    \frametitle{Conjectures}
-    Here's my conjecture.
 \end{frame}
 
 % Conclusion
