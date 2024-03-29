@@ -173,7 +173,7 @@
 \end{frame}
 
 
-\begin{frame}{Introduction of Frame}
+\begin{frame}{Introduction to Frame Theory}
   \begin{itemize}
     % \item Frames are collections of vectors that can approximate any vector in the space with arbitrary accuracy, allowing for redundancy in representation.
     
@@ -181,8 +181,25 @@
     
     \item In finite-dimensional vector spaces, frames are spanning sets.
     %Frame_Motion_Signal_Processing
-    \item In the signal processing, a frame provides a redundant, stable way of representing a signal.\cite{goyal2001quantized}
+    \item In signal processing, a frame can provide a redundant, stable way of representing a signal.\cite{goyal2001quantized}
     
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Example of Frame}
+  \begin{itemize}
+    \item <1-> Let
+    \[
+        \vec{f}_1 = \ivec{1\\1}, \vec{f}_2 = \ivec{1\\-}], \vec{v}_3 = \ivec{0\\1}.
+    \]
+    This is a frame for $\RR^2$ since it's a spanning set (as $\operatorname{rank}(\ivec{\vec{f}_1 & \vec{f}_2 & \vec{f}_3}) = 2$).
+
+    \item <2-> Any other vector $\vec{v}\in\RR^2$ can be written as a linear combination of the frame vectors:
+    \[
+        \vec{v} = c_1\vec{f}_1 + c_2\vec{f}_2 + c_3\vec{f}_3
+    \]
+
+    \item <3-> Since the frame is linearly dependent, this can be done in infinitely many ways.
   \end{itemize}
 \end{frame}
 
@@ -204,14 +221,6 @@
   
   \item \textbf{Communications}
   % : Frames are used in communication systems for channel coding, modulation, and equalization. They enable reliable transmission of information over noisy or bandwidth-limited channels.
-  \end{itemize}
-\end{frame}
-
-\begin{frame}{Example of Frame}
-  \begin{itemize}
-    \item 
-    \item 
-    \item 
   \end{itemize}
 \end{frame}
 
@@ -378,35 +387,54 @@
     \end{multicols}
 \end{frame}
 
-\begin{frame}{Introduction of Tight Frame}
+\begin{frame}{Introduction to Tight Frames}
   \begin{itemize}
-    \item 
-    \item 
-    \item 
+    \item <1-> Given a frame $F = \ivec{\vec{f}_1 & \ldots & \vec{f}_N}$ for $\RR^d$ and some arbitrary $\vec{v}\in\RR^d$, we want an easy way to find coefficients $c_i$ such that
+    \[
+        \vec{v} = \sum_{i=1}^{N}c_i\vec{f}_i.
+    \]
+    \item <2-> This can be done quickly if the frame is \textbf{tight}: $FF^{T} = \alpha I$.
+    Then
+    \begin{align*}
+        \alpha\vec{v}
+        &= FF^{T}\vec{v} \\
+        &= \ivec{\vec{f}_1 & \ldots & \vec{f}_N}\ivec{\vec{f}_1^T \\ \vdots \\ \vec{f}_N^T}\vec{v} \\
+        &= \sum_{i=1}^{N}\langle\vec{f}_i,\vec{v}\rangle\vec{f}_i
+    \end{align*}
+    \item <3-> For tight frames, $c_i = \frac{\langle\vec{f}_i,\vec{v}\rangle}{\alpha}$.
+    If the frame is also unit-normed, then $\alpha = \frac{N}{d}$.
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Example of Tight Frame}
+\begin{frame}{Example of a Tight Frame}
   \begin{itemize}
-    \item 
-    \item 
-    \item 
+    \item <1-> Let 
+    \[
+        \vec{f}_{1} = \ivec{0\\1},\vec{f}_{2} = \ivec{-\frac{\sqrt{3}}{2} \\ -\frac{1}{2}}, \vec{f}_{3} = \ivec{\frac{\sqrt{3}}{2} \\ -\frac{1}{2}}.
+    \]
+
+    \item <2-> This is a tight frame for $\RR^2$ since $FF^{T} = \frac{3}{2}I$.
+
+    \item <3-> Relatively easy way to compute coefficients in frame expansion:
+    \[
+        \ivec{1 \\ 1} = \frac{2}{3}\left(1\vec{f}_1 -\frac{\sqrt{3}+1}{2}\vec{f}_2 + \frac{\sqrt{3}-1}{2}\vec{f}_3\right).
+    \]
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Application of Tight Frame}
+\begin{frame}{Equiangular Tight Frames}
   \begin{itemize}
-    \item 
-    \item 
-    \item 
+    \item <1-> An $(N,d)$ \textbf{equiangular tight frame} (ETF) is a unit-normed tight frame of $N$ vectors  in $d$ dimensions with the extra condition $|\langle\vec{f}_i,\vec{f}_j\rangle| = \mu$.
+    \item <2-> Such frames have important properties in coding theory and signal processing.\cite{SH1}
+    \item <3-> A $(d+1,d)$ ETF always exists (see last slide for an example).
   \end{itemize}
 \end{frame}
 
 
 %Research Result
-\section{Research result}
+\section{Matroids and Tight Frames}
 \begin{frame}{Some important theorems}
-    \begin{theorem}[K. Lin, 2023]
+    \begin{theorem}[\textbf{K. Lin}, J. Oldroyd, 2023]
 %A $(d+1, d)$ ETF can be constructed by first constructing a corresponding Gram matrix $G$ using the formula
 Given the $(d+1, d)$ ETF with Gram matrix
 $G = \frac{d+1}{d}I_{d+1} -\frac{1}{d}J$,
