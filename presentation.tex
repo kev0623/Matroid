@@ -6,7 +6,22 @@
 % Title Page
 \title[Tight Frames and Matroids]{Tight Frames and Matroids}
 \author{Kai Chun Lin}
-\institute{Rose-Hulman}
+\institute{Rose-Hulman Institute of Technology}
+\setbeamertemplate{footline}{%
+  \leavevmode%
+  \hbox{%
+    \begin{beamercolorbox}[wd=.33\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
+      \usebeamerfont{author in head/foot}\insertshortauthor\ (Rose-Hulman)
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.33\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+      \usebeamerfont{title in head/foot}\insertshorttitle
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.34\paperwidth,ht=2.25ex,dp=1ex,center]{date in head/foot}%
+      \usebeamerfont{date in head/foot}\insertshortdate{}\hspace*{2em}
+      \insertframenumber{} / \inserttotalframenumber\hspace*{2ex}
+    \end{beamercolorbox}}%
+  \vskip0pt%
+}
 \usepackage{amsmath,amssymb,amsthm}
 \newcommand{\RR}{\mathbb{R}}
 
@@ -17,8 +32,9 @@
 \usepackage{mathtools}
 \DeclarePairedDelimiter\set{\{}{\}}
 \usepackage{multicol}
-\usepackage{biblatex}
+\usepackage[backend=biber]{biblatex}
 \addbibresource{library.bib}
+
 \newtheorem{conjecture}{Conjecture}
 \renewcommand{\vec}[1]{\mathbf{#1}}
 \newcommand{\ivec}[2][.8]{%
@@ -65,20 +81,20 @@
 \section{Introduction of Matroid, Frame and Tight Frame}
 \begin{frame}{Introduction of Matroid}
  \begin{itemize}
-    \item Matroid is a generalization of linearly independent set
+    \item <1- >Matroid is a generalization of linearly independent set
     % \item A finite matroid $M$ is a pair $(E, \mathcal{I})$, where E is a finite set\\
     % (referred to as the ground set) and $\mathcal{I}$ is a collection of subsets of $E$ (referred to as the independent sets), satisfying the three axioms.
     % \cite{datta2019low}
-    \item A \textbf{matroid} is a pair $(S,I)$ with $S$ being a \textbf{ground set} and $I$ is a collection of subsets of $S$ such that it satisfy this 3 axioms
-     \item Axioms
-     s
-      \begin{enumerate}
-      
-        \item The empty set is independent $\emptyset \in \textit{I}$
-        \item Every subset of an independent set is independent
-        \item If If $A$ and $B$ are two independent sets (i.e., each set is independent) and $A$ has more elements than $B$, then there exists $x \in A \setminus B$ such that $B \cup \{x\}$ is in $\mathcal{I}$.
+    \item <2- > A \textbf{matroid} is a pair $(S,I)$ with $S$ being a \textbf{ground set} and $I$ is a family of subsets of $S$  which is called (\textbf{Independent Subsets})such that it satisfy 3 axioms.
+    \item <3- > Axioms
+        \begin{enumerate}
+            \item <4- > The empty set is independent $\emptyset \in \textit{I}$
+        \item <5- > Every subset of an independent set is independent
+        \item <6- > (Exchange Property) If $A$ and $B$ are two independent sets (i.e., each set is independent) and $A$ has more elements than $B$, then there exists $x \in A \setminus B$ such that $B \cup \{x\}$ is in $\mathcal{I}$.
         \cite{oxley2003matroid}
-    \end{enumerate}
+
+        \end{enumerate}
+        
   \end{itemize}
 \end{frame}
 
@@ -101,19 +117,22 @@
   \draw (E) edge node[above] {6} (D);
   \draw (D) edge node[above] {5} (F);
 \end{tikzpicture}
-\caption{Caption?}
+% \caption{Caption?}
 \end{figure}
 \begin{itemize}
     \item <1-> Simple graphs such as this define \textit{graphic matroids}.
     \item <2-> Dependent sets are sets of edges that contain circuits.
 \end{itemize}
 \end{frame}
-\begin{frame}{Introduction to Graphic Matroid}
+
+{
+\usebackgroundtemplate{}
+\begin{frame}{Ground set, Independent sets, Dependent sets}
     
     \begin{itemize}
-       \item In this graph the \textbf{groundset} $S =\{1,2,3,4,5,6\}$ and \textit{maximal} independent sets are
+       \item <1- >In this graph the \textbf{groundset} $S =\{1,2,3,4,5,6\}$ and \textit{maximal} independent sets are
        \[
-            I = \{\{1, 2, 3, 5, 6\}, \{1, 3, 4, 5, 6\}, ...\}
+            M = \{\{1, 2, 3, 5, 6\}, \{1, 3, 4, 5, 6\}, ...\}
        \]
     %    \[I = \{ \begin{aligned}
     %     &\emptyset , \{1\} , \{2\} , \dots ,\{6\} ,
@@ -121,40 +140,43 @@
     %   &\{1,3,2,6,5\} , \{1,3,4,6,5\} ,\{1,2,6,4,5\} , \{1,2,3,4,5\}
     % \}
     % \end{aligned}\]
-        \item Independent sets are collections without cycles why?
-        \item Example of Independent set $\{1,2,3,5\} , \{3,2,1\}$
-        \item Example of Dependent set $\{2,3,4,6\}$
+        % \item Independent sets are collections without cycles why?
+        \item <2- > Example of Independent set $\{1,2,3,5\} , \{3,2,1\}$
+        \item <3- > Example of Dependent set $\{2,3,4,6\}$
         
     \end{itemize}
-    Does anyone know what is the example of dependent set?
+    % Does anyone know what is the example of dependent set?
 
 \end{frame}
-\begin{frame}{Introduction to Graphic Matroid}
+
+\begin{frame}{Some Terminology of Matroid}
     \begin{itemize}
-        \item A \textbf{maximal} independent set is called a \textbf{base}.
-        \item Every \textbf{base} of a given matroid has the same size.
+        \item <1- > A \textbf{maximal} independent set is called a \textbf{base}.
+        \item <2- > Every \textbf{base} of a given matroid has the same size.
         why?
-        \item Can you think some examples of base for the previous graph?
-        \item $\{1,3,2,6,5\} , \{1,3,4,6,5\} , \{1,2,6,4,5\}$ these are bases of the graph.
-        \item The \textbf{rank} of a matroid is the size of any base.
-        \item A \textbf{circuit} is a minimal dependent set.
+        \item <3- > Can you think some examples of base for the previous graph?
+        \item <4 -> $\{1,3,2,6,5\} , \{1,3,4,6,5\} , \{1,2,6,4,5\}$ these are bases of the graph.
+        \item <5- > The \textbf{rank} of a matroid is the size of any base.
+        \item <6- > A \textbf{circuit} is a minimal dependent set.
     \end{itemize}
 \end{frame}
-\begin{frame}{Example of Matroid}
-    \[A = \begin{bmatrix}
-    1 & 0 & 0 & 1 & 1 & 0 \\
-    0 & 1 & 0 & 1 & 0 & 1 \\
-    0 & 0 & 1 & 0 & 1 & 1
-    \end{bmatrix}\]
-    \[E = \{1,2,3,4,5,6 \}\]
+}
 
-    \begin{itemize}
-        \item <1-> Independent sets are
-        \[
-        \{\emptyset, \{1\}, \{2\}, \{3\}, \{1,2\}, \{1, 3\}, \{2, 3\}, \{1, 2, 3\}\}.
-        \]
-    \end{itemize}
-\end{frame}
+% \begin{frame}{Example of Matroid}
+%     \[A = \begin{bmatrix}
+%     1 & 0 & 0 & 1 & 1 & 0 \\
+%     0 & 1 & 0 & 1 & 0 & 1 \\
+%     0 & 0 & 1 & 0 & 1 & 1
+%     \end{bmatrix}\]
+%     \[E = \{1,2,3,4,5,6 \}\]
+
+%     \begin{itemize}
+%         \item <1-> Independent sets are
+%         \[
+%         \{\emptyset, \{1\}, \{2\}, \{3\}, \{1,2\}, \{1, 3\}, \{2, 3\}, \{1, 2, 3\}\}.
+%         \]
+%     \end{itemize}
+% \end{frame}
 
 \begin{frame}{Application of Matroid}
 
@@ -165,15 +187,20 @@
 % the other way. Proving statements for matroids also proves them for all the objects matroids
 % generalize, and this is a very powerful tool in mathematics
 \begin{itemize}
-    \item <1->
-    \item <2->
-    \item <3->
+    \item geometry
+    \item topology
+    \item combinatorial optimization
+    \item network theory
+    \item coding theory
+    \\
+    \cite{neel2009matroids}
+    \cite{kashyap2009applications}
 \end{itemize}
     
 \end{frame}
 
 
-\begin{frame}{Introduction to Frame Theory}
+\begin{frame}{Introduction of Frame}
   \begin{itemize}
     % \item Frames are collections of vectors that can approximate any vector in the space with arbitrary accuracy, allowing for redundancy in representation.
     
@@ -181,7 +208,7 @@
     
     \item In finite-dimensional vector spaces, frames are spanning sets.
     %Frame_Motion_Signal_Processing
-    \item In signal processing, a frame can provide a redundant, stable way of representing a signal.\cite{goyal2001quantized}
+    \item In the signal processing, a frame provides a redundant, stable way of representing a signal.\cite{goyal2001quantized}
     
   \end{itemize}
 \end{frame}
@@ -190,7 +217,7 @@
   \begin{itemize}
     \item <1-> Let
     \[
-        \vec{f}_1 = \ivec{1\\1}, \vec{f}_2 = \ivec{1\\-}], \vec{v}_3 = \ivec{0\\1}.
+        \vec{f}_1 = \ivec{1\\1}, \vec{f}_2 = \ivec{1\\-1}, \vec{f}_3 = \ivec{0\\1}.
     \]
     This is a frame for $\RR^2$ since it's a spanning set (as $\operatorname{rank}(\ivec{\vec{f}_1 & \vec{f}_2 & \vec{f}_3}) = 2$).
 
@@ -199,7 +226,7 @@
         \vec{v} = c_1\vec{f}_1 + c_2\vec{f}_2 + c_3\vec{f}_3
     \]
 
-    \item <3-> Since the frame is linearly dependent, this can be done in infinitely many ways.
+    \item <3-> Since this frame is linearly dependent, this can be done in infinitely many ways.
   \end{itemize}
 \end{frame}
 
@@ -207,22 +234,26 @@
   \begin{itemize}
     % \item Frames are used in error detection and correction and the design and analysis of filter banks and more generally in applied mathematics, computer science, and engineering.
 
-  \item \textbf{Signal Processing}
+  \item Signal Processing
   % : Frames are used for signal denoising, compression, and reconstruction. They provide a flexible framework for representing signals in various domains, such as time, frequency, or spatial.
   
-  \item \textbf{Image Processing}
+  \item Image Processing
   % : Frames are employed for image compression, enhancement, and restoration. They enable efficient representation of image patches and facilitate robust image reconstruction from incomplete or noisy data.
   
-  \item \textbf{Data Compression}
+  \item Data Compression
   % : Frames play a crucial role in data compression techniques, such as JPEG and MP3. By exploiting the redundancy inherent in signals or images, frames allow for efficient encoding and decoding processes.
   
-  \item \textbf{Sensing and Sampling}
+  \item Sensing and Sampling
   % : Frames are utilized in sensor networks and sampling schemes for signal acquisition and reconstruction. They enable the design of sampling matrices that satisfy specific sensing or recovery properties.
   
-  \item \textbf{Communications}
+  \item Communications
   % : Frames are used in communication systems for channel coding, modulation, and equalization. They enable reliable transmission of information over noisy or bandwidth-limited channels.
+  
+  \cite{casazza2012finite}
   \end{itemize}
 \end{frame}
+
+
 
 \begin{frame}
     \frametitle{Bases and erasures}
@@ -386,7 +417,8 @@
 
     \end{multicols}
 \end{frame}
-
+{
+\usebackgroundtemplate{}
 \begin{frame}{Introduction to Tight Frames}
   \begin{itemize}
     \item <1-> Given a frame $F = \ivec{\vec{f}_1 & \ldots & \vec{f}_N}$ for $\RR^d$ and some arbitrary $\vec{v}\in\RR^d$, we want an easy way to find coefficients $c_i$ such that
@@ -405,7 +437,7 @@
     If the frame is also unit-normed, then $\alpha = \frac{N}{d}$.
   \end{itemize}
 \end{frame}
-
+}
 \begin{frame}{Example of a Tight Frame}
   \begin{itemize}
     \item <1-> Let 
@@ -431,42 +463,124 @@
 \end{frame}
 
 
+ {
+\usebackgroundtemplate{}
 %Research Result
-\section{Matroids and Tight Frames}
-\begin{frame}{Some important theorems}
-    \begin{theorem}[\textbf{K. Lin}, J. Oldroyd, 2023]
+\section{Result}
+\begin{frame}
+   \begin{theorem}[K. Lin, J. Oldroyd 2023]
 %A $(d+1, d)$ ETF can be constructed by first constructing a corresponding Gram matrix $G$ using the formula
-Given the $(d+1, d)$ ETF with Gram matrix
-$G = \frac{d+1}{d}I_{d+1} -\frac{1}{d}J$,
 %Then we need to add together columns of this matrix taken k at a time to form the particular matroid.
-form a collection of $\binom{d+1}{d} = d+1$ vectors by adding together $d$ vectors from the ETF at a time.
-The matroid corresponding to this new collection has only one circuit, namely, the set $\{1, 2, \ldots, d, d+1\}$.
+Let $\{\vec{f}_i\}_{i=1}^{d+1}$ be a $(d+1,d)$ ETF with $\langle\vec{f}_i,\vec{f}_j\rangle = -\frac{1}{d}, i\neq j$.
+This has only one circuit, namely, the set $\{1, 2, \ldots, d, d+1\}$.
 % We found that if $k=d$ this matroid has only one circuit.
 \end{theorem}
 \begin{proof}
 % Since in the case $k=d$. In the first, we will have $k+1$ vector and to pick $d$ vectors and add them together to get a new vector and add this new vector in the matroid.
-Since $\sum_{i=1}^{d+1}\vec{f}_i = \vec{0}$,
-if we pick $d$ vectors at a time is equivalent to picking $(d+1)-d = 1$ vector at a time. 
-Then, if $d=k$ which means to pick one vector at the time and add the vector to the matrix which did not add anything to the matroid.
-Accordingly, if $k=d$ this matroid has only one circuit which is $\{1, 2, \ldots, d, d+1\}$.
-In other word, every columns is a dependent set but if we remove any columns it will be independent set.
+Since $\langle\vec{f}_i,\vec{f}_j\rangle = -\frac{1}{d}, i\neq j$, it follows that $\sum_{i=1}^{d+1}\vec{f}_i = \vec{0}$.
+Hence, $\{1,\ldots, d+1\}$ is a dependent set in the matroid associated with
+\[
+    F = \ivec{\vec{f}_1 & \ldots & \vec{f}_{d+1}}.
+\]
+As the vectors span $\RR^d$ and any single vector $\vec{f}_i$ can be written as a linear combination of the other $d$ vectors, we can also say that no subset of $\{\vec{f}_i\}$ of size $d$ is linearly independent.
+In other words, every columns is a dependent set but if we remove any columns it will be independent set.
 \end{proof}
 \end{frame}
 
+\begin{frame}
+    \frametitle{Multi-angle tight frames}
+    \begin{itemize}
+    \item <1-> Let $\{\vec{f}_i\}_{i=1}^{d+1}$ be a $(d+1,d)$ ETF with $\langle\vec{f}_i,\vec{f}_j\rangle = -\frac{1}{d}, i\neq j$.
+    
+    \item <2-> Let $1\leq k\leq d$ and let $\Lambda = \{i_1, i_2, \ldots, i_k\}$ denote a subset of $\{1,\ldots, d+1\}$ of size $k$.
+    We can use $\Lambda$ to define a new vector $\vec{g}$ in terms of the original frame vectors as follows:
+    \[
+    \vec{g} = \vec{f}_{i_1} + \cdots + \vec{f}_{i_{k}}.
+    \]
+
+    \item <3-> The set of all $N = \binom{d+1}{k}$ such vectors $\{\vec{g}_n\}_{n=1}^{N}$ forms a multi-angle frame.\cite{datta2019low}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Multi-angle frame example}
+    \begin{example}
+        Let $\{\vec{f}_1, \vec{f}_2, \vec{f}_3\}$ denote the Mercedes-Benz frame.
+        Let
+        \[
+        \{\Lambda_n\}_{n=1}^{3} = \{\Lambda_1, \Lambda_2, \Lambda_3\} = \{\{1, 2\}, \{1, 3\}, \{2, 3\}\}
+        \]
+        denote the collection of subsets of $\{1,2,3\}$ of size $k = 2$.
+        Then the frame determined by $\{\Lambda_n\}$ is given by
+        \[
+        \vec{g}_1 = \vec{f}_1+\vec{f}_2 = -\vec{f}_3,\quad \vec{g}_2 = \vec{f}_1+\vec{f}_3 = -\vec{f}_2,\quad \vec{g}_3 = \vec{f}_2+\vec{f}_3 = -\vec{f}_1.
+        \]
+    \end{example}
+    \begin{itemize}
+    \item <2-> In matrix form, the above computation looks like
+    \[
+    \ivec{\vec{g}_1 & \vec{g}_2 & \vec{g}_3}
+    = \ivec{\vec{f}_1 & \vec{f}_2 & \vec{f}_3}\ivec{1 & 1 & 0 \\ 1 & 0 & 1 \\ 0 & 1 & 1} = FK.
+    \]
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Circuits of $k$-angle frame}
+    \begin{theorem}
+        Let $\{\vec{f}_i\}$ be $(d+1,d)$ ETF with pairwise inner products $-\frac{1}{d}$.
+        Given $\{\Lambda_n\}_{n=1}^{N}$ where $1\leq k\leq d+1$, $N = \binom{d+1}{k}$, define
+        \[
+            \vec{g}_n = \sum_{m\in\Lambda_n}\vec{f}_m
+        \]
+        where $\{\Lambda_n\}$ denotes the collection of $\binom{d+1}{k}$ subsets of $\{1,\ldots, d+1\}$ of size $k$.
+        Then the submatrices of $K$ that correspond to circuits of the matroid associated with $\{\vec{g}_n\}$ have a $1$ in each row.
+    \end{theorem}
+\end{frame}
+\begin{frame}
+    \frametitle{Circuits of $k$-angle frame}
+    \begin{proof}
+        \begin{itemize}
+            \item <1-> Circuits are minimal dependent subsets of $\{\vec{g}_n\}$.
+
+            \item <2-> Dependent sets correspond to solutions of $FK\vec{x} = \vec{0}$ with $\vec{x}\neq\vec{0}$.
+            Minimal dependent sets correspond to nonzero $\vec{x}$ with \textit{fewest} possible nonzero entries.
+
+            \item <3-> Two cases: $K\vec{x}\neq\vec{0}$ or $K\vec{x} = \vec{0}$.
+            First case forces $K\vec{x} = c\vec{1}, c\neq 0$.
+            This can happen only if each row of $K$ has a nonzero entry, i.e., a $1$.
+            Second case we can write $\sum_j x_j \vec{k}_{i_j} = \vec{0}$ where
+            \[
+                \widehat{K} = [\vec{k}_{i_j}]
+            \]
+            corresponds to nonzero entries of $\vec{x}$.
+            Assume WLOG that row $1$ of $\widehat{K}$ contains only zeros.
+            This contradicts minimality of $\vec{x}$, so it must contain a $1$.\qedhere
+        \end{itemize}
+    \end{proof}
+\end{frame}
 
 \begin{frame}
     \frametitle{Conjectures}
 	\begin{conjecture}
-	Here's my conjecture.
+	[Bidirectional]
+    Let $\{g_i\}$ denote the tight frame constructed above.
+    Then the dependent subsets of this frame (viewed as columns of $FK$) are those that correspond to submatrices of $K$ with a $1$ in each row.
+    Equivalently, the dependent subsets correspond to collections of blocks from $\{\Lambda_i\}$ whose union is $\{1,2,\ldots, d+1\}$.
 	\end{conjecture}
 
 \end{frame}
-
-% Conclusion
-\section{Conclusion}
-\begin{frame}{Acknowledgements}
-    This work was supported by the SURE.2020.WV.03 SURE Grant through the WV Research Challenge Fund, WV Higher Education Policy Commission.
+\begin{frame}{Frame Title}
+    \frametitle{conjecture}
+        \begin{conjecture}
+            [One direction]
+    Suppose that $\{g_{i_1}, g_{i_2}, \ldots, g_{i_m}\}$ is a dependent subset of $\{g_i\}$.
+    Then the submatrix of $K$ consisting of the $i_1, i_2, \ldots, i_m^{\text{th}}$ columns has a $1$ in each row.
+        \end{conjecture}
 \end{frame}
+}   
+
+
 
 \begin{frame}{Conclusion}
   \begin{itemize}
@@ -478,16 +592,23 @@ In other word, every columns is a dependent set but if we remove any columns it 
 % Conclusion
 \section{Conclusion}
 \begin{frame}{Acknowledgements}
+    Thank you Dr. Oldroyd's invaluable guidance and support for this work. \\
+    
     This work was supported by the SURE.2020.WV.03 SURE Grant through the WV Research Challenge Fund, WV Higher Education Policy Commission.
+    % This work was supported by the SURE.2020.WV.03 SURE Grant through the WV Research Challenge Fund, WV Higher Education Policy Commission.
 \end{frame}
 
 
 % References
-\begin{frame}{References}
-  
+{
+\usebackgroundtemplate{}
+\begin{frame}[allowframebreaks]{References}
     \printbibliography
-
+    
 \end{frame}
+}
+ 
+
 
 
 
