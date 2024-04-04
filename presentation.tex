@@ -574,14 +574,14 @@ In other words, every columns is a dependent set but if we remove any columns it
     \item <1-> In matrix form, the above computation looks like
     \[
     \ivec{\vec{g}_1 & \ldots & \vec{g}_6}
-    = \ivec{\vec{f}_1 & \vec{f}_2 & \vec{f}_3 & \vec{f}_4}\ivec{1 & 1 & 0 & 0 & 0 & 0\\ 1 & 0 & 0 & 1 & 1 & 0 \\ 0 & 1 & 0 & 1 & 0 & 1 \\ 0 & 0 & 1 & 0 & 1 & 1} = FK.
+    = \ivec{\vec{f}_1 & \vec{f}_2 & \vec{f}_3 & \vec{f}_4}\ivec{1 & 1 & 1 & 0 & 0 & 0\\ 1 & 0 & 0 & 1 & 1 & 0 \\ 0 & 1 & 0 & 1 & 0 & 1 \\ 0 & 0 & 1 & 0 & 1 & 1} = FK.
     \]
     \item <2-> Circuit $\{\vec{g}_1, \vec{g}_6\}$ corresponds to \textit{submatrix} $\widehat{K} = \ivec{1 & 0 \\ 1 & 0 \\ 0 & 1 \\ 0 & 1}$.
     \end{itemize}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Circuits of $k$-angle frame}
+    \frametitle{Dependent subsets of $k$-angle frame}
     \begin{theorem}
         Let $\{\vec{f}_i\}$ be $(d+1,d)$ ETF with pairwise inner products $-\frac{1}{d}$.
         Given $\{\Lambda_n\}_{n=1}^{N}$ where $1\leq k\leq d+1$, $N = \binom{d+1}{k}$, define
@@ -589,33 +589,53 @@ In other words, every columns is a dependent set but if we remove any columns it
             \vec{g}_n = \sum_{m\in\Lambda_n}\vec{f}_m
         \]
         where $\{\Lambda_n\}$ denotes the collection of $\binom{d+1}{k}$ subsets of $\{1,\ldots, d+1\}$ of size $k$.
-        Then the submatrices of $K$ that correspond to circuits of the matroid associated with $\{\vec{g}_n\}$ have a $1$ in each row.
+        Then the submatrices of $K$ that have the same number of $1$s in each row correspond to dependent subsets of $\{\vec{g}_n\}$.
     \end{theorem}
-    \begin{itemize}
-        \item This converse does no hold.
-    \end{itemize}
+    % \begin{itemize}
+    %     \item This converse does not hold.
+    % \end{itemize}
 \end{frame}
 \begin{frame}
-    \frametitle{Circuits of $k$-angle frame}
+    \frametitle{Dependent subsets of $k$-angle frame}
     \begin{proof}
         \begin{itemize}
-            \item <1-> Circuits are minimal dependent subsets of $\{\vec{g}_n\}$.
+            % \item <1-> Circuits are minimal dependent subsets of $\{\vec{g}_n\}$.
 
-            \item <2-> Dependent sets correspond to solutions of $FK\vec{x} = \vec{0}$ with $\vec{x}\neq\vec{0}$.
-            Minimal dependent sets correspond to nonzero $\vec{x}$ with \textit{fewest} possible nonzero entries.
+            \item <1-> Dependent sets correspond to solutions of $FK\vec{x} = \vec{0}$ with $\vec{x}\neq\vec{0}$.
+            % Minimal dependent sets correspond to nonzero $\vec{x}$ with \textit{fewest} possible nonzero entries.
 
-            \item <3-> Two cases: $K\vec{x}\neq\vec{0}$ or $K\vec{x} = \vec{0}$.
-            First case forces $K\vec{x} = c\vec{1}, c\neq 0$.
-            This can happen only if each row of $K$ has a nonzero entry, i.e., a $1$.
-            Second case we can write $\sum_j x_j \vec{k}_{i_j} = \vec{0}$ where
-            \[
-                \widehat{K} = [\vec{k}_{i_j}]
-            \]
-            corresponds to nonzero entries of $\vec{x}$.
-            Assume without loss of generality that row $1$ of $\widehat{K}$ contains only zeros.
-            This contradicts minimality of $\vec{x}$, so it must contain a $1$.\qedhere
+            \item <2-> Let $\vec{x} = \vec{1}$ and let $\widehat{K}$ be a submatrix of $K$ with $c$ $1$s in each row.
+            Then $\widehat{K}\vec{x} = c\vec{1}$.
+
+            \item <3-> Since $F\vec{1} = \vec{0}$, it follows that $F\widehat{K}\vec{x} = cF\vec{1} = \vec{0}$.
+
+            \item <4-> If $\widehat{K} = [\vec{k}_{n_j}]$, then $\{\vec{g}_{n_j}\}$ is a dependent subset of $\{\vec{g}_n\}$ since $\sum_j \vec{g}_{n_j} = F\widehat{K}\vec{1} = \vec{0}$.
+
+            % \item <3-> Two cases: $K\vec{x}\neq\vec{0}$ or $K\vec{x} = \vec{0}$.
+            % First case forces $K\vec{x} = c\vec{1}, c\neq 0$.
+            % This can happen only if each row of $K$ has a nonzero entry, i.e., a $1$.
+            % Second case we can write $\sum_j x_j \vec{k}_{i_j} = \vec{0}$ where
+            % \[
+            %     \widehat{K} = [\vec{k}_{i_j}]
+            % \]
+            % corresponds to nonzero entries of $\vec{x}$.
+            % Assume without loss of generality that row $1$ of $\widehat{K}$ contains only zeros.
+            % This contradicts minimality of $\vec{x}$, so it must contain a $1$.\qedhere
         \end{itemize}
     \end{proof}
+    % \begin{proof}
+    %     \begin{itemize}
+    %         \item <1-> Dependent subsets $\{\vec{g}_n\}$ correspond to nonzero solutions of $F\widehat{K}\vec{x} = \vec{0}$ where $\widehat{K}$ denotes the submatrix of $K$ corresponding to the dependent subset.
+
+    %         \item <2-> Suppose that a row of $\widehat{K} = [\hat{k}_{ij}]$ contains only $0$s; without loss of generality, assume the first row is all $0$s.
+    %         Then $FK\vec{x} = \sum_{i=2}^{d+1}c_j\vec{f}_{j} = \vec{0}$ where $c_j = \sum_{m}\hat{k}_{mj}x_m$.
+
+    %         \item <3-> Since $\{\vec{f}_j\}_{j=2}^{d+1}$ is linearly independent, $c_2 = \ldots = c_{d+1} = 0$.
+    %         Hence, $\sum_j c_j = \sum_j\sum_m \hat{k}_{jm}x_m = 0$.
+
+    %         \item <4-> Reversing order of summation gives $\sum_m x_m \sum_j \hat{k}_{jm} = 0 = k\sum_{m}x_m$.
+    %     \end{itemize}
+    % \end{proof}
 \end{frame}
 
 % \begin{frame}
